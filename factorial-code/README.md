@@ -11,10 +11,6 @@ Cette extension Factorial Code ajoute un onglet privé à la page de son applica
 
 Le processus utilise uniquement la lecture par ID de `employees/employees`, la liste `attendance/shifts` et la liste `attendance/worked_times`. Il utilise le client OAuth fourni par l’espace Factorial Code, suit les curseurs de l’API et vérifie l’entreprise du collaborateur et des plages. La version du client en service est fournie par `base-app`. Les tests locaux utilisent le SDK officiel `2.0.0` (API `2026-07-01`) avec des réponses HTTP simulées. Les entrées du formulaire et le résultat sont déclarés transitoires dans Factorial Code. [Client Factorial](https://code.factorialhr.com/docs/building-apps/factorial-client/) · [Entrées de formulaire](https://code.factorialhr.com/docs/processes/input-params/) · [Résultats transitoires](https://code.factorialhr.com/docs/processes/source-code/)
 
-## Aperçu dans le navigateur
-
-Depuis le dossier `factorial-code`, lancez `npm run preview` avec Node.js 22 ou plus récent, puis ouvrez [l’aperçu local](http://127.0.0.1:5082/). L’aperçu exécute le calcul de l’extension sur des données fictives. Le formulaire est prérempli avec l’ID `42` et la période du 16 au 20 novembre 2026. L’aperçu fonctionne sans identifiant ni connexion à Factorial.
-
 ## Tests locaux
 
 Depuis le dossier `factorial-code`, avec Node.js 22 ou plus récent.

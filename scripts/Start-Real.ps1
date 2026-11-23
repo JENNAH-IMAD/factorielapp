@@ -31,8 +31,8 @@ try {
         $env:Factorial__ApiKey = [Net.NetworkCredential]::new('', $secure).Password
         $keySupplied = $true
     }
-    Write-Host 'Journal SQL Server : http://127.0.0.1:5081. Identifiant par defaut : admin.'
-    dotnet run --project backend --no-launch-profile --urls http://127.0.0.1:5081
+    Write-Host 'Journal SQL Server : http://127.0.0.1:5080. Identifiant par defaut : admin.'
+    dotnet run --project backend --no-launch-profile --urls http://127.0.0.1:5080
     if ($LASTEXITCODE -ne 0) { throw 'Impossible de démarrer le journal SQL Server.' }
 } finally {
     $key = $null

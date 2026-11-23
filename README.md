@@ -2,7 +2,7 @@
 
 Application pour le projet Le Chameau SCZ Morocco. Elle réunit les pointages importés de Factorial HR et les saisies locales dans un journal filtrable, avec une interface React, une API ASP.NET Core et une base SQL Server.
 
-**[Présentation de la solution (PDF)](output/pdf/presentation-factorial-pointage.pdf)** · **[Extension Factorial Code](factorial-code/README.md)**
+**[Présentation du journal avec captures (PDF)](output/pdf/presentation-factorial-pointage.pdf)**
 
 Le journal affiche le matricule, l’email, le nom, la date, les heures d’entrée et de sortie et la durée écoulée. Un pointage ouvert ou une heure ambiguë affiche `—` dans la colonne de durée.
 
@@ -17,14 +17,6 @@ git clone https://github.com/JENNAH-IMAD/factorielapp.git
 cd factorielapp
 ```
 
-### Essayer avec des données fictives
-
-```powershell
-pwsh -File scripts/Start-Demo.ps1
-```
-
-Ouvrir [la démonstration](http://127.0.0.1:5080/) et utiliser le bouton d’accès à la démonstration. Le mode démo utilise une base en mémoire et des réponses Factorial simulées. Les modifications disparaissent au redémarrage.
-
 ### Connecter SQL Server et Factorial
 
 Installer SQL Server ou disposer d’une instance accessible avec l’authentification Windows. Par défaut, le script utilise `.\SQLEXPRESS` et la base `API_Sage_Factorial`.
@@ -33,7 +25,11 @@ Installer SQL Server ou disposer d’une instance accessible avec l’authentifi
 pwsh -File scripts/Start-Real.ps1 -ConnectFactorial
 ```
 
-Au premier lancement, choisir le mot de passe administrateur, puis saisir la clé Factorial à l’invite masquée. Ouvrir [le journal SQL Server](http://127.0.0.1:5081/) et se connecter avec l’identifiant `admin` et le mot de passe choisi. Pour une autre instance, ajouter `-Instance 'SERVEUR\INSTANCE'`. Le compte exécutant les migrations doit disposer des droits nécessaires. Pour un déploiement serveur, configurer la connexion SQL côté serveur et servir l’application en HTTPS.
+Au premier lancement, choisir le mot de passe administrateur, puis saisir la clé Factorial à l’invite masquée. Ouvrir [le journal SQL Server](http://127.0.0.1:5080/) et se connecter avec l’identifiant `admin` et le mot de passe choisi. Avec une clé Factorial déjà enregistrée sur le poste, lancer `pwsh -File scripts/Start-Real.ps1`. Pour une autre instance, ajouter `-Instance 'SERVEUR\INSTANCE'`. Le compte exécutant les migrations doit disposer des droits nécessaires. Pour un déploiement serveur, configurer la connexion SQL côté serveur et servir l’application en HTTPS.
+
+### Essai hors ligne
+
+Pour essayer le même journal avec des données fictives, arrêter d’abord le journal connecté, puis lancer `pwsh -File scripts/Start-Demo.ps1` et ouvrir la même adresse. Ce mode conserve les modifications en mémoire jusqu’au redémarrage.
 
 ## Utiliser le journal
 
@@ -42,15 +38,6 @@ Au premier lancement, choisir le mot de passe administrateur, puis saisir la cl�
 3. Cliquer sur **Ajouter un pointage**, puis choisir **Saisie manuelle** pour renseigner les dates et heures, ou **En temps réel** pour enregistrer les événements au fil de la journée. Le menu **Actions** permet de modifier ou retirer les saisies de l’application.
 
 L’application consulte Factorial en lecture seule. Les saisies faites dans le journal restent dans la base locale. Garder les clés et mots de passe dans la configuration du serveur.
-
-## Essayer l’onglet Factorial Code
-
-```powershell
-cd factorial-code
-npm run preview
-```
-
-Ouvrir [l’aperçu](http://127.0.0.1:5082/) et afficher les pointages du collaborateur fictif `42`. L’installation de l’onglet dans Factorial HR nécessite un espace Factorial Code approuvé. [Procédure de déploiement](factorial-code/README.md#installation-en-démonstration)
 
 ## Table et journal SQL
 
