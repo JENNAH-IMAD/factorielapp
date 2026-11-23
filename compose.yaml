@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    ports: ["127.0.0.1:5080:8080"]
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
+      ConnectionStrings__Database: ${SQLSERVER_CONNECTION_STRING:?Configurer la connexion SQL Server dans .env}
+      Admin__Username: ${ADMIN_USERNAME:-admin}
+      Admin__PasswordHash: ${ADMIN_PASSWORD_HASH:?Configurer ADMIN_PASSWORD_HASH}
+      Factorial__ApiKey: ${FACTORIAL_API_KEY:-}
+      Factorial__CompanyToken: ${FACTORIAL_COMPANY_TOKEN:-}
+      AllowedHosts: ${ALLOWED_HOSTS:-localhost;127.0.0.1}

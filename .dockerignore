@@ -1,0 +1,10 @@
+.git
+.local
+.env
+**/node_modules
+**/bin
+**/obj
+**/appsettings.Local.json
+frontend/dist
+backend/wwwroot
+docs/factorial-openapi.json

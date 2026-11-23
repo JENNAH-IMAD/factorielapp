@@ -1,0 +1,7 @@
+{
+  "name": "factorial-code-calcul-pointage",
+  "private": true,
+  "scripts": { "test": "node --test", "preview": "node preview.mjs" },
+  "engines": { "node": ">=22" },
+  "devDependencies": { "@factorialco/api-client": "2.0.0" }
+}

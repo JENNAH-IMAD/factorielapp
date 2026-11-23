@@ -1,0 +1,18 @@
+{
+  "title": "Calcul du pointage",
+  "description": "Consultez les pointages Factorial d’un collaborateur sur une période de 31 jours maximum. Les heures sont affichées au Maroc.",
+  "type": "object",
+  "required": ["employeeId", "from", "to"],
+  "additionalProperties": false,
+  "properties": {
+    "employeeId": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]{0,19}$",
+      "title": "Identifiant Factorial du collaborateur",
+      "description": "Utilisez la colonne ID Factorial de l’annuaire dans le journal de pointage. Le nom sera affiché dans le résultat.",
+      "isTransient": true
+    },
+    "from": { "type": "string", "format": "date", "title": "Du", "isTransient": true },
+    "to": { "type": "string", "format": "date", "title": "Au", "isTransient": true }
+  }
+}

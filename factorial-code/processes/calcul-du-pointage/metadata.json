@@ -1,0 +1,11 @@
+{
+  "name": "Calcul du pointage",
+  "description": "Consulter les heures pointées et les durées par journée, en lecture seule.",
+  "webhook": { "enabled": false },
+  "factorial": {
+    "enabled": true,
+    "awaitResult": true,
+    "requiredPolicies": [["company.admin"]],
+    "form": { "enabled": true, "public": false, "appTool": true, "title": "Calcul du pointage" }
+  }
+}
