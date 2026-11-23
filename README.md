@@ -27,6 +27,15 @@ pwsh -File scripts/Start-Real.ps1 -ConnectFactorial
 
 Au premier lancement, choisir le mot de passe administrateur, puis saisir la clé Factorial à l’invite masquée. Ouvrir [le journal SQL Server](http://127.0.0.1:5080/) et se connecter avec l’identifiant `admin` et le mot de passe choisi. Avec une clé Factorial déjà enregistrée sur le poste, lancer `pwsh -File scripts/Start-Real.ps1`. Pour une autre instance, ajouter `-Instance 'SERVEUR\INSTANCE'`. Le compte exécutant les migrations doit disposer des droits nécessaires. Pour un déploiement serveur, configurer la connexion SQL côté serveur et servir l’application en HTTPS.
 
+### Retrouver la même base sur un autre poste
+
+1. Installer SQL Server 2019 ou plus récent et SQL Server Management Studio (SSMS). Récupérer le fichier de sauvegarde `API_Sage_Factorial-*.bak` par un canal interne autorisé. Il contient l’annuaire, les pointages locaux et importés, ainsi que l’historique des imports à la date de la sauvegarde.
+2. Placer le fichier dans le dossier de sauvegarde de l’instance cible ou dans un dossier accessible au service SQL Server. Dans SSMS, ouvrir **Bases de données > Restaurer la base de données**, choisir **Périphérique**, puis ajouter le fichier `.bak`. Garder **API_Sage_Factorial** comme nom de destination sur une instance qui ne possède pas déjà une base de ce nom. Dans **Fichiers**, choisir de déplacer les fichiers vers les dossiers de données et de journal de l’instance cible.
+3. Cloner le dépôt et lancer `pwsh -File scripts/Start-Real.ps1 -ConnectFactorial`. Définir le mot de passe local du compte `admin` et fournir, côté serveur, une clé Factorial pour la **même entreprise**. Les identifiants d’accès sont configurés sur chaque poste. Pour conserver la clé localement, utiliser `scripts/Set-FactorialKey.ps1`.
+4. Ouvrir [le journal](http://127.0.0.1:5080/), puis vérifier l’annuaire dans **Paramétrage** et les saisies dans **Journal > Toutes les dates**. Pour consulter l’instantané avant tout import manuel, démarrer sans `-ConnectFactorial`. Pour repartir d’une base neuve, utiliser **Importer depuis Factorial** après configuration. Cette opération récupère les données disponibles dans l’API. Les saisies exclusivement locales sont transférées via la sauvegarde.
+
+Conserver le fichier `.bak`, les documents nominatifs et les secrets dans un espace interne à accès restreint.
+
 ### Essai hors ligne
 
 Pour essayer le même journal avec des données fictives, arrêter d’abord le journal connecté, puis lancer `pwsh -File scripts/Start-Demo.ps1` et ouvrir la même adresse. Ce mode conserve les modifications en mémoire jusqu’au redémarrage.

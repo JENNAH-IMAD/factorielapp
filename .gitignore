@@ -9,3 +9,5 @@ backend/wwwroot/
 .local/
 *.user
 **/*.tsbuildinfo
+*.bak
+*.bacpac
