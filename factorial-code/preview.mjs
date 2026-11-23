@@ -37,7 +37,7 @@ function escapeHtml(value) {
 
 function renderReport(message) {
   return message.split("\n\n").map((block) => {
-    if (block.startsWith("## ")) return `<h2>${escapeHtml(block.slice(3))}</h2>`;
+    if (block.startsWith("## ")) return `<h2>${escapeHtml(block.slice(3).replace(/\\([\\`*_{}\[\]()#+\-.!|<>&~])/g, "$1"))}</h2>`;
     if (block.startsWith("### ")) return `<h3>${escapeHtml(block.slice(4))}</h3>`;
     if (!block.startsWith("|")) return `<p>${escapeHtml(block.replaceAll("`", ""))}</p>`;
     const [head, , ...body] = block.split("\n");
